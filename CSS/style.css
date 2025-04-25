@@ -1,0 +1,109 @@
+@import url('https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css');
+@import url('https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css');
+@import url('https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css');
+@import url('https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css');
+@import url('https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-straight/css/uicons-solid-straight.css');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+body {
+    position: relative;
+    background: #020024;
+    background: linear-gradient(to bottom, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 20%, rgba(0, 212, 255, 1) 100%);
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 300px;
+    min-height: 500px;
+    overflow: hidden;
+    background-color: white;
+    border-radius: 7px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;font-weight: bold;
+}
+
+.container header {
+    text-align: center;
+    padding: 15px;
+    padding-top: 30px;
+    background: url(../assets/background.jpg);
+    background-size: cover;
+    border-radius: 7px;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    color: white;
+}
+
+.container header .num-tasks {
+    font-size: 14px;
+    color: #fff;
+    font-weight: 400;
+    margin-top: 3px;
+}
+
+.container .list{
+    padding: 40px 20px 0;
+}
+
+.container .list .task {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    font-weight: 500;
+    font-size: 15px;
+    color: #777;
+}
+
+.container .list .task .checkbox{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 3px solid #ccc;
+    rotate: -30deg;
+}
+
+.container .list .task .checkbox i{
+    display: none;
+    rotate: 30deg;
+    font-size: 19px;
+    color: #07d664;
+    translate: 2px -1px;
+}
+
+.container .list .task .checkbox[data-checked="true"]{
+    border-color:  #07d664;
+    border-right-color: white;
+    transition: all 0.3s ease;
+}
+
+.container .list .task .checkbox[data-checked="true"] i{
+    display: inline-block;
+}
