@@ -46,14 +46,15 @@ body {
     overflow: hidden;
     background-color: white;
     border-radius: 7px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;font-weight: bold;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    font-weight: bold;
 }
 
 .container header {
     text-align: center;
     padding: 15px;
     padding-top: 30px;
-    background: url(../assets/background.jpg);
+    background: #60a4ff;
     background-size: cover;
     border-radius: 7px;
     border-bottom-left-radius: 50%;
@@ -63,13 +64,35 @@ body {
 
 .container header .num-tasks {
     font-size: 14px;
-    color: #fff;
     font-weight: 400;
     margin-top: 3px;
 }
 
-.container .list{
+.container .no-task {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    display: none;
+    transition: .2s;
+}
+
+.container .no-task img {
+    width: 180px;
+    translate: 20px;
+    margin: 60px 0 30px;
+}
+
+.container .no-task p {
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.container .list {
     padding: 40px 20px 0;
+    height: 350px;
+    overflow-y: scroll;
 }
 
 .container .list .task {
@@ -80,30 +103,47 @@ body {
     font-weight: 500;
     font-size: 15px;
     color: #777;
+    transition: .2s;
 }
 
-.container .list .task .checkbox{
+.container .list .task .actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.container .list .task .actions .trash {
+    color: red;
+    font-size: 24px;
+    translate: 0 2px;
+    cursor: pointer;
+}
+
+.container .list .task .actions .checkbox {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    border: 3px solid #ccc;
+    border: 3px solid #60a4ff;
     rotate: -30deg;
+    cursor: pointer;
 }
 
-.container .list .task .checkbox i{
-    display: none;
+.container .list .task .actions .checkbox i {
+    display: inline-block;
+    opacity: 0;
     rotate: 30deg;
     font-size: 19px;
     color: #07d664;
     translate: 2px -1px;
+    transition: .1s;
 }
 
-.container .list .task .checkbox[data-checked="true"]{
-    border-color:  #07d664;
+.container .list .task .checkbox[data-checked="true"] {
+    border-color: #07d664;
     border-right-color: white;
-    transition: all 0.3s ease;
+    transition: .15s;
 }
 
-.container .list .task .checkbox[data-checked="true"] i{
-    display: inline-block;
+.container .list .task .actions .checkbox[data-checked="true"] i {
+    opacity: 100%;
 }
