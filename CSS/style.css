@@ -41,6 +41,7 @@ body {
 }
 
 .container {
+    position: relative;
     width: 300px;
     min-height: 500px;
     overflow: hidden;
@@ -53,8 +54,8 @@ body {
 .container header {
     text-align: center;
     padding: 15px;
-    padding-top: 30px;
-    background: #60a4ff;
+    padding-top: 25px;
+    background: #081e87;
     background-size: cover;
     border-radius: 7px;
     border-bottom-left-radius: 50%;
@@ -62,10 +63,10 @@ body {
     color: white;
 }
 
-.container header .num-tasks {
+.container header .tasks-num {
     font-size: 14px;
     font-weight: 400;
-    margin-top: 3px;
+    margin-top: 5px;
 }
 
 .container .no-task {
@@ -90,9 +91,13 @@ body {
 }
 
 .container .list {
-    padding: 40px 20px 0;
-    height: 350px;
+    padding: 20px 20px 0;
+    height: 370px;
     overflow-y: scroll;
+}
+
+.container .list::-webkit-scrollbar {
+    display: none;
 }
 
 .container .list .task {
@@ -115,7 +120,7 @@ body {
 .container .list .task .actions .trash {
     color: red;
     font-size: 24px;
-    translate: 0 2px;
+    translate: 0 3px;
     cursor: pointer;
 }
 
@@ -123,7 +128,7 @@ body {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    border: 3px solid #60a4ff;
+    border: 3px solid #081e87;
     rotate: -30deg;
     cursor: pointer;
 }
@@ -146,4 +151,14 @@ body {
 
 .container .list .task .actions .checkbox[data-checked="true"] i {
     opacity: 100%;
+}
+
+.container .new-task {
+    position: absolute;
+    top: 93%;
+    left: 50%;
+    translate: -50% -50%;
+    font-size: 40px;
+    color: #081e87;
+    cursor: pointer;
 }
