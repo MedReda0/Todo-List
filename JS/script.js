@@ -8,6 +8,7 @@ let no_task = document.querySelector(".no-task")
 let task_checkbox = document.querySelectorAll(".checkbox")
 let trashs = document.querySelectorAll(".trash")
 let tasks_num = document.querySelector(".tasks-num")
+let new_task = document.querySelector(".new-task")
 
 day.textContent = `${date.toLocaleDateString("default", { weekday: 'short' })},`
 month.textContent = `${date.toLocaleDateString("default", { month: 'short' })}`
@@ -23,7 +24,7 @@ function tasks_num_check() {
             function () {
                 no_task.style.opacity = "100"
             },
-            200)
+            150)
     }
 }
 
@@ -38,7 +39,7 @@ trashs.forEach((trash) => {
                 trash.closest(".task").remove()
                 tasks_num_check()
             },
-            200)
+            150)
     })
 })
 
@@ -52,3 +53,5 @@ task_checkbox.forEach((checkbox) => {
     })
 })
 
+new_task.style.height = getComputedStyle(list).getPropertyValue('height')
+console.log(getComputedStyle(new_task).getPropertyValue('height'))

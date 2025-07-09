@@ -31,13 +31,55 @@ input:focus {
 
 body {
     position: relative;
-    background: #020024;
     background: linear-gradient(to bottom, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 20%, rgba(0, 212, 255, 1) 100%);
     overflow: hidden;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+
+}
+
+.new-task{
+    position: absolute;
+    width: 500px;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    background: white;
+    z-index: 9999;
+    padding: 20px;
+    overflow: hidden;
+    transition: .2s;
+}
+
+.new-task header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.new-task header .title, .new-task .done-btn{
+    font-weight: 600;
+}
+.new-task header i{
+    font-size: 20px;
+    translate: 5px 0;
+    color: #081e87;
+}
+
+.new-task input.task-content{
+    height: 70%;
+    width: 100%;
+    background: #ccc; 
+    border: none;
+    margin: 20px 0;
+}
+
+.new-task .done-btn{
+    text-align: center;
+    background: #081e87;
+    color: white;
+    padding: 10px;
 }
 
 .container {
@@ -91,7 +133,7 @@ body {
 }
 
 .container .list {
-    padding: 20px 20px 0;
+    padding: 10px 15px 0;
     height: 370px;
     overflow-y: scroll;
 }
@@ -153,7 +195,7 @@ body {
     opacity: 100%;
 }
 
-.container .new-task {
+.container .new-task-btn {
     position: absolute;
     top: 93%;
     left: 50%;
