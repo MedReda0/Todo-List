@@ -9,6 +9,9 @@ let task_checkbox = document.querySelectorAll(".checkbox")
 let trashs = document.querySelectorAll(".trash")
 let tasks_num = document.querySelector(".tasks-num")
 let new_task = document.querySelector(".new-task")
+let close_btn = document.querySelector(".new-task header i")
+let done_btn = document.querySelector(".new-task .done-btn")
+let new_task_btn = document.querySelector(".new-task-btn")
 
 day.textContent = `${date.toLocaleDateString("default", { weekday: 'short' })},`
 month.textContent = `${date.toLocaleDateString("default", { month: 'short' })}`
@@ -27,8 +30,8 @@ function tasks_num_check() {
             150)
     }
 }
-
 tasks_num_check()
+
 
 trashs.forEach((trash) => {
     trash.addEventListener("click", () => {
@@ -42,7 +45,6 @@ trashs.forEach((trash) => {
             150)
     })
 })
-
 task_checkbox.forEach((checkbox) => {
     checkbox.addEventListener("click", () => {
         let checkbox_check = checkbox.getAttribute("data-checked") === "true"
@@ -53,5 +55,14 @@ task_checkbox.forEach((checkbox) => {
     })
 })
 
-new_task.style.height = getComputedStyle(list).getPropertyValue('height')
-console.log(getComputedStyle(new_task).getPropertyValue('height'))
+
+function new_task_toggle() {
+    setTimeout(
+        function () {
+            new_task.style.display = getComputedStyle(new_task).getPropertyValue('display') == "block" ? "none" : "block"
+        },
+        90)
+    new_task.style.opacity = getComputedStyle(new_task).getPropertyValue('opacity') == "1" ? "0" : "1"
+    document.body.classList.toggle('hide-overlay');
+}
+[new_task_btn, close_btn, done_btn].forEach((btn) => { btn.addEventListener("click", new_task_toggle) })

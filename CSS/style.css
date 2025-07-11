@@ -3,8 +3,11 @@
 @import url('https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css');
 @import url('https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css');
 @import url('https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-straight/css/uicons-solid-straight.css');
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+    --main_color : #081e87;
+}
 
 * {
     box-sizing: border-box;
@@ -37,7 +40,25 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
+body::before{
+    position: absolute;
+    content: "";
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: black;
+    opacity: .8;
+    pointer-events: auto;
+    transition: opacity 0.2s;
+    z-index: 98;
+}
+
+body.hide-overlay::before {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .new-task{
@@ -47,9 +68,11 @@ body {
     left: 50%;
     translate: -50% -50%;
     background: white;
-    z-index: 9999;
-    padding: 20px;
+    z-index: 99;
+    padding: 15px 20px;
     overflow: hidden;
+    opacity: 0;
+    display: none;
     transition: .2s;
 }
 
@@ -58,26 +81,33 @@ body {
     justify-content: space-between;
 }
 
+.new-task header i, .new-task .done-btn{
+    cursor: pointer;
+}
+
 .new-task header .title, .new-task .done-btn{
     font-weight: 600;
 }
 .new-task header i{
     font-size: 20px;
     translate: 5px 0;
-    color: #081e87;
+    color: var(--main_color);
 }
 
-.new-task input.task-content{
-    height: 70%;
+.new-task textarea.task-content{
     width: 100%;
+    padding: 10px;
     background: #ccc; 
     border: none;
     margin: 20px 0;
+    resize: none;
+    outline: none;
+    caret-color: var(--main_color);
 }
 
 .new-task .done-btn{
     text-align: center;
-    background: #081e87;
+    background: var(--main_color);
     color: white;
     padding: 10px;
 }
@@ -97,7 +127,7 @@ body {
     text-align: center;
     padding: 15px;
     padding-top: 25px;
-    background: #081e87;
+    background: var(--main_color);
     background-size: cover;
     border-radius: 7px;
     border-bottom-left-radius: 50%;
@@ -170,7 +200,7 @@ body {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    border: 3px solid #081e87;
+    border: 3px solid var(--main_color);
     rotate: -30deg;
     cursor: pointer;
 }
@@ -201,6 +231,6 @@ body {
     left: 50%;
     translate: -50% -50%;
     font-size: 40px;
-    color: #081e87;
+    color: var(--main_color);
     cursor: pointer;
 }
