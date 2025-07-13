@@ -42,26 +42,26 @@ function tasks_num_check() {
 tasks_num_check()
 
 
-trashs.forEach((trash) => {
-    trash.addEventListener("click", () => {
-        let the_task = trash.closest(".task")
+list.addEventListener('click',function(e){
+    if(e.target.classList.contains('trash')){
+        let the_task = e.target.closest(".task")
         the_task.style.opacity = "0"
         setTimeout(
             function () {
-                trash.closest(".task").remove()
+                the_task.remove()
                 tasks_num_check()
             },
             150)
-    })
-})
-task_checkboxs.forEach((checkbox) => {
-    checkbox.addEventListener("click", () => {
+    }
+    if (e.target.classList.contains('checkbox') || e.target.classList.contains('checkIcon')){
+        let checkbox = e.target.closest(".checkbox")
         let checkbox_check = checkbox.getAttribute("data-checked") === "true"
         checkbox.setAttribute("data-checked", !checkbox_check)
         let task = checkbox.closest(".task")
         let content = task.querySelector(".content")
         content.style.textDecoration = !checkbox_check ? "line-through" : "none";
-    })
+        content.style.color = !checkbox_check ? "#ccc" : "#777";
+    }
 })
 
 
@@ -107,10 +107,10 @@ done_btn.addEventListener('click', function () {
     new_task_actions.append(new_task_checkbox)
 
     let new_task_checkIcon = document.createElement('i')
-    new_task_checkIcon.classList.add('fi', 'fi-br-check')
+    new_task_checkIcon.classList.add('fi', 'fi-br-check','checkIcon')
     new_task_checkbox.append(new_task_checkIcon)
 
-
+    new_task_input.value = ''
     new_task_UI_toggle();
     tasks_num_check()
 })

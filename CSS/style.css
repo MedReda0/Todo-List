@@ -126,12 +126,18 @@ body.hide-overlay::before {
 .container {
     position: relative;
     width: 300px;
-    min-height: 500px;
+    height: 450px;
     overflow: hidden;
     background-color: white;
     border-radius: 7px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     font-weight: bold;
+}
+
+@media (max-height: 550px){
+    .container{
+        height: 380px;
+    }
 }
 
 .container header {
@@ -175,8 +181,14 @@ body.hide-overlay::before {
 
 .container .list {
     padding: 10px 15px 0;
-    height: 370px;
+    height: 310px;
     overflow-y: scroll;
+}
+
+@media (max-height: 550px) {
+    .container .list{
+        height: 250px;
+    }
 }
 
 .container .list::-webkit-scrollbar {
@@ -191,6 +203,10 @@ body.hide-overlay::before {
     font-weight: 500;
     font-size: 15px;
     color: #777;
+    transition: .15s;
+}
+
+.container .list .task .content{
     transition: .2s;
 }
 
@@ -214,6 +230,7 @@ body.hide-overlay::before {
     border: 3px solid var(--main_color);
     rotate: -30deg;
     cursor: pointer;
+    z-index: 97;
 }
 
 .container .list .task .actions .checkbox i {
