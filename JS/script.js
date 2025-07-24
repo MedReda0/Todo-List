@@ -67,9 +67,10 @@ list.addEventListener('click', function (e) {
         let content = task.querySelector(".content")
         content.style.textDecoration = !checkbox_check ? "line-through" : "none";
         content.style.color = !checkbox_check ? "#ccc" : "#777";
-        let key = `${content.textContent}`;
-        let current = localStorage.getItem(key) === "true";
-        localStorage.setItem(key, !current);
+        let key = content.textContent;
+        let obj = JSON.parse(localStorage.getItem(key));
+        obj.done = !obj.done;
+        localStorage.setItem(key, JSON.stringify(obj));
     }
 })
 
@@ -127,7 +128,7 @@ function createTask(content, value) {
     new_task_checkIcon.classList.add('fi', 'fi-br-check', 'checkIcon')
     new_task_checkbox.append(new_task_checkIcon)
 
-    if (value === "true") {
+    if (value === true) {
         new_task_checkbox.setAttribute("data-checked", "true")
         newTask_content.style.textDecoration = "line-through";
         newTask_content.style.color = "#ccc";
@@ -137,13 +138,17 @@ function createTask(content, value) {
 
 function task_add() {
     if (new_task_input.value.trim() !== '') {
-        createTask(new_task_input.value)
-        localStorage.setItem(`${new_task_input.value}`, false)
-        new_task_input.value = ''
+        createTask(new_task_input.value);
+        // Store both done and created values
+        localStorage.setItem(
+            new_task_input.value,
+            JSON.stringify({ done: false, created: Date.now() })
+        );
+        new_task_input.value = '';
         new_task_UI_toggle();
-        tasks_num_check()
+        tasks_num_check();
     } else {
-        new_task_input.style.borderColor = "red"
+        new_task_input.style.borderColor = "red";
     }
 }
 
@@ -164,11 +169,19 @@ new_task_input.addEventListener("focus", () => {
 
 
 function old_tasks_check() {
-    for (i = localStorage.length - 1; i >= 0; i--) {
-        let task = localStorage.key(i)
-        let task_value = localStorage.getItem(task)
-        createTask(task, task_value)
-    }
+    // Get all tasks as [key, value] pairs
+    let old_tasks = Object.entries(localStorage)
+        .map(([key, value]) => {
+            let obj = JSON.parse(value);
+            return { key, done: obj.done, created: obj.created };
+        })
+        // Sort by created DESC (most recent first)
+        .sort((a, b) => a.created - b.created);
+
+    // Create tasks in sorted order
+    old_tasks.forEach(task => {
+        createTask(task.key, task.done);
+    });
 }
 
 old_tasks_check()
